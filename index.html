@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Projects, resume, and contact for Sebastian Cuaresma, mathematics and statistics student at the University of Maryland.">
+<title>Sebastian Cuaresma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: left-aligned editorial column. Intro block, project cards as the main event, then about / resume / contact in a quieter two-column footer. */
+:root {
+  --bg: #f2f4f7;
+  --surface: #ffffff;
+  --ink: #12172a;
+  --muted: #5a6279;
+  --line: #d9dde6;
+  --accent: #2845d6;
+  --accent-ink: #ffffff;
+  --accent-soft: #e4e9fd;
+  --f-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1220; --surface: #161b2e; --ink: #e9ecf6; --muted: #98a0b8; --line: #2a3150;
+    --accent: #8ea3ff; --accent-ink: #0e1220; --accent-soft: #212a55; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1220; --surface: #161b2e; --ink: #e9ecf6; --muted: #98a0b8; --line: #2a3150;
+  --accent: #8ea3ff; --accent-ink: #0e1220; --accent-soft: #212a55; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.6; padding-inline: 20px; padding-block: 0 56px; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: 1040px; margin-inline: auto; }
+
+/* top bar */
+.bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; padding-block: 18px; border-bottom: 1px solid var(--line); }
+.bar .mark { font-family: var(--f-display); font-weight: 700; font-size: 17px; letter-spacing: -0.01em; }
+.bar nav { display: flex; flex-wrap: wrap; gap: 4px 20px; font-family: var(--f-mono); font-size: 13px; }
+.bar nav a { color: var(--muted); text-decoration: none; }
+.bar nav a:hover { color: var(--accent); }
+
+/* intro */
+.intro { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 32px 56px; padding-block: 56px 48px; align-items: end; }
+.eyebrow { font-family: var(--f-mono); font-size: 13px; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 14px; }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 0.98; letter-spacing: -0.03em; margin: 0; text-wrap: balance; }
+.lede { font-size: 1.12rem; max-width: 34em; margin: 20px 0 0; color: var(--ink); }
+.facts { margin: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.facts div { display: grid; grid-template-columns: 7.5em minmax(0, 1fr); gap: 12px; padding-block: 11px; border-bottom: 1px solid var(--line); font-size: 15px; }
+.facts dt { font-family: var(--f-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); padding-top: 3px; }
+.facts dd { margin: 0; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 6px; font: 600 15px var(--f-body); text-decoration: none; cursor: pointer; border: 1.5px solid var(--accent); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:hover { filter: brightness(1.08); }
+
+/* section heads */
+section { padding-block: 40px 8px; }
+.sec-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 20px; margin-bottom: 22px; }
+h2 { font-family: var(--f-display); font-weight: 700; font-size: 1.9rem; letter-spacing: -0.02em; margin: 0; }
+.sec-head p { margin: 0; color: var(--muted); font-size: 15px; }
+
+/* projects */
+.projects { display: grid; gap: 20px; }
+.project { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 26px; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 24px 40px; }
+.p-meta { font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 14px; margin-bottom: 10px; }
+.project h3 { font-family: var(--f-display); font-weight: 700; font-size: 1.45rem; line-height: 1.15; letter-spacing: -0.015em; margin: 0 0 12px; text-wrap: balance; }
+.project p { margin: 0 0 10px; max-width: 38em; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; padding: 0; list-style: none; }
+.tags li { font-family: var(--f-mono); font-size: 12px; padding: 3px 9px; border-radius: 99px; background: var(--accent-soft); color: var(--accent); }
+.aside { border-left: 1px solid var(--line); padding-left: 28px; min-width: 0; display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+.stat { display: grid; grid-template-columns: minmax(0, auto) minmax(0, 1fr); gap: 2px 14px; align-items: baseline; }
+.stat b { font-family: var(--f-display); font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.stat span { font-size: 14px; color: var(--muted); }
+.segs { display: grid; gap: 8px; }
+.seg-row { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; }
+.seg-row span:last-child { font-family: var(--f-mono); font-size: 12px; color: var(--muted); text-align: right; }
+.scale { height: 8px; border-radius: 99px; background: linear-gradient(90deg, var(--accent-soft), var(--accent)); }
+.mini-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 14px; }
+.mini-list li { display: grid; grid-template-columns: 8.5em minmax(0, 1fr); gap: 10px; }
+.mini-list b { font-family: var(--f-mono); font-weight: 500; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; padding-top: 2px; }
+
+
+.project .wide { grid-column: 1 / -1; min-width: 0; border-top: 1px solid var(--line); padding-top: 20px; }
+.project .wide p { max-width: 46em; }
+.label { font-family: var(--f-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 18px 0 8px !important; }
+.wide .label { margin-top: 0 !important; }
+.covers { margin: 0 0 4px; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 15px; }
+.covers li { display: grid; grid-template-columns: 9.5em minmax(0, 1fr); gap: 4px 14px; }
+.covers b { font-weight: 600; }
+.fine { font-size: 13px; color: var(--muted); margin: 8px 0 0 !important; }
+.tablewrap { overflow-x: auto; margin-top: 14px; border: 1px solid var(--line); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; font-variant-numeric: tabular-nums; }
+caption { text-align: left; padding: 10px 14px; font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+th, td { padding: 8px 14px; text-align: left; border-top: 1px solid var(--line); white-space: nowrap; }
+th { font-family: var(--f-mono); font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.num { text-align: right; }
+.docs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.doc { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 1.5px solid var(--accent); border-radius: 6px; font-weight: 600; font-size: 14.5px; text-decoration: none; color: var(--accent); }
+.doc:hover { background: var(--accent-soft); }
+.seglist li { grid-template-columns: 1.4em minmax(0, 1fr); }
+.seglist b { font-size: 13px; color: var(--accent); }
+.seglist em { display: block; font-style: normal; font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+details summary { cursor: pointer; font-weight: 600; color: var(--accent); min-height: 32px; }
+.snip { margin: 12px 0 0; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); overflow-x: auto; font: 13px/1.55 var(--f-mono); }
+
+/* about / skills / activity */
+.cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px 56px; }
+.cols p { margin: 0 0 12px; max-width: 36em; }
+.skills { display: grid; gap: 14px; margin: 0; }
+.skills dt { font-family: var(--f-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.skills dd { margin: 2px 0 0; }
+.timeline { margin: 0; padding: 0; list-style: none; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.timeline li { display: grid; grid-template-columns: 6.5em minmax(0, 1fr); gap: 14px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.timeline time { font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); padding-top: 3px; }
+.timeline strong { display: block; font-weight: 600; }
+.timeline span { color: var(--muted); font-size: 15px; }
+
+/* contact */
+.contact { margin-top: 40px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 28px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px 32px; align-items: center; }
+.contact h2 { font-size: 1.6rem; }
+.contact p { margin: 6px 0 0; color: var(--muted); }
+.mail { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.mail code { font-family: var(--f-mono); font-size: 15px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); user-select: all; overflow-wrap: anywhere; }
+.mail button { min-height: 44px; }
+.note { font-size: 13px; color: var(--muted); font-family: var(--f-mono); min-height: 1.2em; margin-top: 6px; }
+footer { margin-top: 32px; font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 20px; }
+
+@media (max-width: 820px) {
+  .covers li { grid-template-columns: minmax(0, 1fr); }
+  .intro { grid-template-columns: minmax(0, 1fr); padding-block: 40px 32px; }
+  .project { grid-template-columns: minmax(0, 1fr); padding: 20px; }
+  .aside { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 18px; }
+  .cols { grid-template-columns: minmax(0, 1fr); }
+  .contact { grid-template-columns: minmax(0, 1fr); padding: 22px; }
+  .mini-list li { grid-template-columns: 7.5em minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+<style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="bar">
+    <span class="mark">S. Cuaresma</span>
+    <nav aria-label="Sections">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="intro">
+    <div>
+      <p class="eyebrow">Mathematics &amp; Statistics · University of Maryland</p>
+      <h1>Sebastian Cuaresma</h1>
+      <p class="lede">I build and evaluate machine learning models, from clustering and forecasting to LLM evaluation. I am a statistics student who likes turning messy data into something a person can act on.</p>
+      <div class="actions">
+        <a class="btn primary" href="#projects">See projects</a>
+        <a class="btn ghost" href="Sebastian_Cuaresma_Resume.pdf" target="_blank" rel="noopener">Open resume (PDF)</a>
+      </div>
+    </div>
+    <dl class="facts">
+      <div><dt>Studying</dt><dd>B.S. Mathematics, Statistics Track</dd></div>
+      <div><dt>Minors</dt><dd>Business and Economics</dd></div>
+      <div><dt>Graduating</dt><dd>May 2028</dd></div>
+      <div><dt>Based in</dt><dd>College Park, MD</dd></div>
+    </dl>
+  </div>
+
+  <section id="projects">
+    <div class="sec-head">
+      <h2>Projects</h2>
+      <p>Coursework and independent work, newest first.</p>
+    </div>
+
+    <div class="projects">
+      <article class="project">
+        <div>
+          <div class="p-meta"><span>Sep 2026</span><span>University project</span><span>Excel</span></div>
+          <h3>Automated Investment Portfolio</h3>
+          <p>A five-year backtest in Excel. I split $500,000 across 12 stocks in IT and healthcare, bought on Jan 21, 2020, sold half on Jan 24, 2025, and valued the other half at live prices. Every output is a formula, so changing a weight, price, or tax rate updates the whole workbook.</p>
+          <p class="label">What the workbook covers</p>
+          <ul class="covers">
+            <li><b>Portfolio</b> Weights, shares bought, tiered transaction fee, 15% tax on the realized half, net gain, and % gain before and after tax, with an allocation check and chart.</li>
+            <li><b>LivePrices</b> Current quotes that feed the Portfolio sheet through VLOOKUP.</li>
+            <li><b>Industry and Sector summaries</b> Amount invested, gain, and average % gain, built with SUMIFS and AVERAGEIFS.</li>
+            <li><b>Rebalance Simulation</b> Ranks every stock by return at Jan 24, 2023, sells the bottom 6, splits the proceeds equally across the top 6, and compares the result with buy-and-hold.</li>
+          </ul>
+          <ul class="tags"><li>Excel</li><li>Diversification rules</li><li>Rebalancing</li><li>SUMIFS / VLOOKUP</li></ul>
+        </div>
+        <div class="aside">
+          <div class="stat"><b>541.6%</b><span>gain before tax (511.3% after)</span></div>
+          <div class="stat"><b>+$279,679</b><span>rebalancing vs buy-and-hold (+11.6%)</span></div>
+          <ul class="mini-list">
+            <li><b>Per stock</b><span>3% to 20% allowed; actual 4% to 14%</span></li>
+            <li><b>Sectors</b><span>IT 61%, healthcare 35%, each above the 30% minimum</span></li>
+            <li><b>Cash</b><span>4%, under the 5% cap</span></li>
+          </ul>
+        </div>
+        <div class="wide">
+          <p class="label">Results</p>
+          <p>Net gain after fees was about $2.60M. NVIDIA drove most of it: 14% of the money invested and a 2,881% gain. Only Adobe and Pfizer lost money, both by under 5%. The rebalance ended at $2,698,548 against $2,418,869 for buy-and-hold. Almost all of that came from adding to NVIDIA, so it worked because the winner kept winning.</p>
+          <div class="tablewrap">
+            <table>
+              <caption>Holdings, in order of the workbook</caption>
+              <thead><tr><th scope="col">Stock</th><th scope="col">Industry</th><th scope="col" class="num">Weight</th><th scope="col" class="num">Gain before tax</th></tr></thead>
+              <tbody>
+                <tr><td>MSFT</td><td>Software, infrastructure</td><td class="num">12%</td><td class="num">203.7%</td></tr>
+                <tr><td>ORCL</td><td>Software, infrastructure</td><td class="num">6%</td><td class="num">215.2%</td></tr>
+                <tr><td>NVDA</td><td>Semiconductors</td><td class="num">14%</td><td class="num">2,881.4%</td></tr>
+                <tr><td>AMD</td><td>Semiconductors</td><td class="num">8%</td><td class="num">637.8%</td></tr>
+                <tr><td>CRM</td><td>Software, application</td><td class="num">7%</td><td class="num">54.9%</td></tr>
+                <tr><td>ADBE</td><td>Software, application</td><td class="num">6%</td><td class="num">&minus;4.2%</td></tr>
+                <tr><td>ACN</td><td>IT services</td><td class="num">4%</td><td class="num">40.5%</td></tr>
+                <tr><td>IBM</td><td>IT services</td><td class="num">4%</td><td class="num">118.4%</td></tr>
+                <tr><td>JNJ</td><td>Drug manufacturers</td><td class="num">12%</td><td class="num">65.7%</td></tr>
+                <tr><td>PFE</td><td>Drug manufacturers</td><td class="num">5%</td><td class="num">&minus;5.0%</td></tr>
+                <tr><td>UNH</td><td>Healthcare plans</td><td class="num">13%</td><td class="num">65.8%</td></tr>
+                <tr><td>CI</td><td>Healthcare plans</td><td class="num">5%</td><td class="num">44.8%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="fine">Gain counts half the shares sold on Jan 24, 2025 and half valued at live prices as of Sep 27, 2026.</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <div>
+          <div class="p-meta"><span>Jan 2026 &ndash; May 2026</span><span>INST201, University of Maryland</span><span>Group of five</span></div>
+          <h3>Research Report: Data Ownership</h3>
+          <p>A co-authored paper arguing that users should have legal ownership of the data they generate online, even if that changes how &ldquo;free&rdquo; internet services work. It combines a literature review with a direct argument built on property law and political theory.</p>
+          <p>The paper takes on the strongest objection head-on: that ownership would break the ad-funded model. It responds that these services are not free, since users already pay with their data, and that consent-based exchange would replace overcollection.</p>
+          <ul class="tags"><li>Research writing</li><li>Data privacy</li><li>Surveillance capitalism</li><li>Literature review</li></ul>
+          <div class="docs"><a class="doc" href="Data_Ownership_Research_Report.pdf" target="_blank" rel="noopener">Read the paper (PDF, 12 pages)</a></div>
+        </div>
+        <div class="aside">
+          <div class="stat"><b>9%</b><span>of Americans always read privacy policies (Pew, 2019)</span></div>
+          <div class="stat"><b>145M</b><span>Americans exposed in the 2017 Equifax breach</span></div>
+          <ul class="mini-list">
+            <li><b>Position</b><span>Users should own the data they generate</span></li>
+            <li><b>Support</b><span>Data as personal property in a property-owning democracy</span></li>
+            <li><b>Harms</b><span>Breaches, doxing, swatting</span></li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="project">
+        <div>
+          <div class="p-meta"><span>May 2025</span><span>University project</span><span>Python</span></div>
+          <h3>Customer Segmentation Using K-Means Clustering on Credit Card Data</h3>
+          <p>A K-Means model that groups about 10,000 bank credit card customers by behavior, so offers can be tailored to each group and churn reduced. I removed ID and pre-computed classifier columns, encoded the categorical fields, standardized all 19 features, and used the elbow method to settle on five clusters.</p>
+          <p>Each cluster is profiled on credit limit, transaction amount and count, utilization, and retention, then paired with a recommendation. The standout is cluster 1: basic cards with only 67% of customers retained, the weakest of the five.</p>
+          <ul class="tags"><li>Python</li><li>scikit-learn</li><li>K-Means</li><li>PCA</li><li>Elbow method</li></ul>
+          <div class="docs">
+            <a class="doc" href="Customer_Segmentation_KMeans.pdf" target="_blank" rel="noopener">Slides (PDF)</a>
+            <a class="doc" href="notebook.html" target="_blank" rel="noopener">Notebook with outputs</a>
+          </div>
+        </div>
+        <div class="aside">
+          <div class="stat"><b>~10,000</b><span>customers, 19 features</span></div>
+          <div class="stat"><b>K = 5</b><span>chosen from K = 1 to 10</span></div>
+          <ul class="mini-list seglist">
+            <li><b>0</b><span>High limit, light use<em>84% retained</em></span></li>
+            <li><b>1</b><span>Basic card, highest churn<em>67% retained</em></span></li>
+            <li><b>2</b><span>Light spenders<em>83% retained</em></span></li>
+            <li><b>3</b><span>Power users<em>96% retained</em></span></li>
+            <li><b>4</b><span>Low limit, high utilization<em>92% retained</em></span></li>
+          </ul>
+        </div>
+        <div class="wide">
+          <details>
+            <summary>View the core of the code</summary>
+            <pre class="snip"><code>df = pd.read_csv("BankChurners.csv")
+df_cleaned = df.drop(columns=["CLIENTNUM", &lt;two pre-computed classifier columns&gt;])
+
+for col in df_cleaned.select_dtypes(include=["object"]).columns:
+    df_cleaned[col] = LabelEncoder().fit_transform(df_cleaned[col])
+
+features = df_cleaned.drop(columns=["Attrition_Flag"])
+features_scaled = StandardScaler().fit_transform(features)
+
+# Elbow method, K = 1 to 10
+inertia = {k: KMeans(n_clusters=k, random_state=42, n_init=10).fit(features_scaled).inertia_
+           for k in range(1, 11)}
+
+# Final model, K = 5
+kmeans = KMeans(n_clusters=5, random_state=42, n_init=10)
+df_cleaned["Cluster"] = kmeans.fit_predict(features_scaled)
+profiles = df_cleaned.groupby("Cluster").mean().round(2)</code></pre>
+          </details>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="sec-head"><h2>About</h2></div>
+    <div class="cols">
+      <div>
+        <p>I am a Mathematics major on the Statistics track at the University of Maryland, with minors in Business and Economics. My coursework covers probability theory, statistical methods, algorithms, machine learning, and financial forecasting.</p>
+        <p>I like projects where a model has to lead to a decision: who needs which credit product, how a portfolio should be rebalanced, which language model is worth deploying. Outside class I am part of the AI/ML club at UMD, where we work through transformers, reinforcement learning, and neural network optimization.</p>
+        <ul class="timeline" style="margin-top:24px">
+          <li><time>Oct 2025</time><div><strong>MLcon &amp; SANER Conferences</strong><span>Presented machine learning research on AI exploit severity classification, covering feature engineering, bootstrapping for bias, and a linear regression model with 86% explained variance.</span></div></li>
+          <li><time>Apr 2025 – now</time><div><strong>AI/ML at UMD, club member</strong><span>Research and personal projects on transformers and reinforcement learning. Presented workshops on prompt engineering and RAG system design to 30+ members.</span></div></li>
+        </ul>
+      </div>
+      <dl class="skills">
+        <div><dt>Languages and tools</dt><dd>Python (Pandas, NumPy, PyTorch, Hugging Face Transformers), MATLAB, SAS, GitLab, Linux</dd></div>
+        <div><dt>Methods</dt><dd>Clustering, regression, time series forecasting, classification, statistical testing, data visualization</dd></div>
+        <div><dt>Also</dt><dd>Geospatial mapping, technical writing</dd></div>
+        <div><dt>Training</dt><dd>Data Literacy Fundamentals, Data Science Foundations, AI &amp; GenAI Fundamentals</dd></div>
+        <div><dt>Recognition</dt><dd>Academic Honors 2024–2025 · GPA 3.64 / 4.0</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="resume">
+    <div class="sec-head"><h2>Resume</h2><p>Two pages, PDF.</p></div>
+    <div class="actions" style="margin-top:0">
+      <a class="btn primary" href="Sebastian_Cuaresma_Resume.pdf" target="_blank" rel="noopener">Open resume (PDF)</a>
+    </div>
+  </section>
+
+  <div class="contact" id="contact">
+    <div>
+      <h2>Get in touch</h2>
+      <p>Open to internships, research, and project collaborations.</p>
+    </div>
+    <div>
+      <div class="mail">
+        <code id="addr">scuaresma13@gmail.com</code>
+        <button class="btn ghost" id="copy" type="button">Copy email</button>
+      </div>
+      <div class="note" id="note" role="status"></div>
+    </div>
+  </div>
+
+  <footer><span>Sebastian Cuaresma</span><span>College Park, MD</span></footer>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy');
+  var note = document.getElementById('note');
+  var addr = document.getElementById('addr');
+  function select() {
+    var r = document.createRange(); r.selectNodeContents(addr);
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+  btn.addEventListener('click', function () {
+    var text = addr.textContent;
+    var done = function () { note.textContent = 'Copied.'; setTimeout(function () { note.textContent = ''; }, 2000); };
+    var fail = function () { select(); note.textContent = 'Selected. Press copy on your keyboard.'; };
+    try {
+      navigator.clipboard.writeText(text).then(done, fail);
+    } catch (e) { fail(); }
+  });
+})();
+</script>
+
+</body>
+</html>
